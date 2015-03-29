@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+  <head>
+    
+    <link rel="stylesheet" href="/static/css/style.css"/>
+  </head>
+
+  <body>
+
+    <div class="nav">
+
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+            <div class="register-btn"><a href="/logout">Logout</a></div>
+        </ul>
+    </div>
+
+    <div class="header">
+
+        <div class="login-box col-lg-3">
+
+            <div>
+                <h3>Login</h3>
+                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+                    <form action="{% url 'dashboard' %}" method="post">
+                    {% csrf_token %}
+                
+                    <div class="form-group">
+                    <label>Title</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="" placeholder="User Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                     <label>Detail</label>
+                         <div class="col-lg-9">
+                           <textarea class="col-lg-2 form-control" name="text" placeholder="Details"> </textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-11">
+                        <input class="btn btn-default" type="submit" value="Submit" />
+                    </div>
+                </form>
+
+
+        </div>
+
+    </div>
+
+  </body>
+
+
+
+</html>
