@@ -2,25 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from Web_App.models import Fir
-from django.utils import timezone
+# Create your views here.
 
 def index(request):
-	return render(request,'index.html')
+	return render(request,'police/index.html')
 
-@login_required(login_url='/')
+@login_required(login_url='/police/login')
 def dashboard(request):
-	return render(request,'userdash.html')
-
-def register_fir(request):
-    title = request.POST['title']
-    detail = request.POST['detail']
-    try:
-        b = Fir(title = title, detail = detail, pub_date=timezone.now())
-        b.save()
-    except Exception as e:
-        print e
-    return redirect('dashboard')
-
+    lastfir = Fir.objects.order_by('-pub_date')[:5]
+    print lastfir
+    return render(request,'police/dashboard.html',{'Fir' : lastfir})
 
 def login_user(request):
     username = request.POST['username']
@@ -29,10 +20,10 @@ def login_user(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('police_dashboard')
     else:
-		return redirect('home')
+		return redirect('police_login')
 
 def logout_user(request):
     logout(request)
-    return redirect('home')
+    return redirect('police_login')

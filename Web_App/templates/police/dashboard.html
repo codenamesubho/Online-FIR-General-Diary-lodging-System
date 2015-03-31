@@ -14,7 +14,7 @@
             <li>Home</li>
             <li>About</li>
             <li>Contact</li>
-            <a href="/logout"><div class="register-btn">Logout</div></a>
+            <a href="{% url 'police_logout' %}"><div class="register-btn">Logout</div></a>
         </ul>
     </div>
 
@@ -45,11 +45,20 @@
                         <input class="btn btn-default" type="submit" value="Submit" />
                     </div>
                 </form>
-
-
         </div>
 
     </div>
+        <ul>
+                    {% for i in Fir %}
+                    <li>
+                        <div>
+                            <p>{{i.title}} ,{{i.pub_date}}</p>
+                            <p>{{i.detail}}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+        
 
   </body>
 

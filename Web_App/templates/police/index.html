@@ -1,8 +1,7 @@
 <!DOCTYPE HTML>
-{% load staticfiles %}
 <html>
   <head>
-    
+    {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
   </head>
 
@@ -14,11 +13,17 @@
             <li>Home</li>
             <li>About</li>
             <li>Contact</li>
-            <a href="/logout"><div class="register-btn">Logout</div></a>
+            <div class="register-btn">Register</div>
         </ul>
     </div>
 
     <div class="header">
+
+        <div class="no-left-padding col-lg-9">
+
+            <img src="{% static 'images/police.jpg' %}"/>
+
+        </div>
 
         <div class="login-box col-lg-3">
 
@@ -26,23 +31,23 @@
                 <h3>Login</h3>
                     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-                    <form action="{% url 'register' %}" method="post">
+                    <form action="{% url 'police_auth' %}" method="post">
                     {% csrf_token %}
                 
                     <div class="form-group">
-                    <label>Title</label>
+                    <label>Username</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="title" placeholder="" />
+                            <input type="text" class="form-control" name="username" placeholder="User Name" />
                         </div>
                     </div>
                     <div class="form-group">
-                     <label>Detail</label>
+                     <label>Password</label>
                          <div class="col-lg-9">
-                           <textarea class="col-lg-2 form-control" placeholder="Details" name="detail"> </textarea>
+                           <input type="password" class="col-lg-2 form-control" name="password" placeholder="Password" />
                         </div>
                     </div>
                     <div class="col-lg-11">
-                        <input class="btn btn-default" type="submit" value="Submit" />
+                        <input class="btn btn-default" type="submit" value="Login" />
                     </div>
                 </form>
 

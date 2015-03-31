@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
-{% load staticfiles %}
 <html>
   <head>
-    
-    <link rel="stylesheet" href="static/css/style.css"/>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
   </head>
 
   <body>
@@ -22,7 +21,7 @@
 
         <div class="no-left-padding col-lg-9">
 
-            <img src="static/images/police.jpg"/>
+            <img src="{% static 'images/police.jpg' %}"/>
 
         </div>
 
