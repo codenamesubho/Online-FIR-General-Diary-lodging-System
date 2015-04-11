@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	{% load staticfiles %}
+	<title>Online FIR and General Diary | User Profile</title>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+
+
+<div class="navigator">
+	<ul>
+		<li style="float:left;">Online FIR and GD Portal</li>
+		<li id="size">Logout</li>
+		<li id="size">|</li>
+		<li id="size">Hi username</li>
+	</ul>
+</div>
+
+<div class="sidebar">
+	<ul>
+		<a href="index.html"><li>Recent FIRs</li></a>
+		<a href="new.html"><li class="active">File new FIR/GD</li></a>
+		<a href="settings.html"><li>Settings</li></a>
+	</ul>
+</div>
+
+	<div class="content">
+	
+		<div class="heading">
+			<h1>File new FIR / General Diary</h1>
+		</div>
+
+		<hr id="divider">
+	
+		<div class="form-controls">
+			<form>
+			<input type="text" placeholder="Subject"/>
+			<input type="text" placeholder="Who committed the crime"/>
+			<input type="text" placeholder="When (Time)"/>
+			<input type="text" placeholder="Where (Place)"/>
+			<input type="text" placeholder="Witnesses"/>
+			<input type="text" placeholder="What was taken away"/>
+			<textarea placeholder="Details"></textarea>
+			<input type="submit" value="submit" id="cent"/>
+			</form>	
+		</div>	
+
+	</div>
+
+
+
+</body>
+</html>
