@@ -1,30 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-<head>
-	{% load staticfiles %}
-	<title>Online FIR and General Diary | User Profile</title>
-	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
-</head>
-<body>
-
-
-<div class="navigator">
-	<ul>
-		<li style="float:left;">Online FIR and GD Portal</li>
-		<li id="size">Logout</li>
-		<li id="size">|</li>
-		<li id="size">Hi username</li>
-	</ul>
-</div>
-
-<div class="sidebar">
-	<ul>
-		<a href="index.html"><li>Recent FIRs</li></a>
-		<a href="new.html"><li class="active">File new FIR/GD</li></a>
-		<a href="settings.html"><li>Settings</li></a>
-	</ul>
-</div>
-
+{% extends 'base.html' %}
+{% block title %}<title>Online FIR and General Diary | User Profile</title>{% endblock %}
+{% block content %}
 	<div class="content">
 	
 		<div class="heading">
@@ -48,7 +24,4 @@
 
 	</div>
 
-
-
-</body>
-</html>
+{% endblock %}

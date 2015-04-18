@@ -5,11 +5,15 @@ from Web_App.models import Fir
 from django.utils import timezone
 
 def index(request):
-	return render(request,'index.html')
+	return render(request,'users/index.html')
 
 @login_required(login_url='/')
 def dashboard(request):
-	return render(request,'userdash.html')
+	return render(request,'users/dashboard.html',{ 'active' : 'dashboard' })
+
+@login_required(login_url='/')
+def lodge(request):
+    return render(request,'users/new.html',{ 'active' : 'new' })
 
 def register_fir(request):
     title = request.POST['title']

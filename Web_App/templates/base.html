@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    {% load staticfiles %}
+    {% block css %} {% endblock %} 
+    {% block js %} {% endblock %}
+    {% block title %} {% endblock %}
+	<link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+
+<div class="navigator">
+	<ul>
+		<li style="float:left;">Online FIR and GD Portal</li>
+		<li id="size">Logout</li>
+		<li id="size">|</li>
+		<li id="size">Hi username</li>
+	</ul>
+</div>
+
+<div class="sidebar">
+	<ul>
+		<a href="{% url 'dashboard' %}">
+			{% if active == "dashboard" %}
+			 <li class= "active">Recent FIRs</li>
+			{% else %}
+			 <li>Recent FIRs</li>
+			{% endif %}
+		</a>
+		<a href="{% url 'lodge_new' %}">
+			{% if active = "new" %}
+			<li class="active">File new FIR/GD</li>
+			{% else %}
+			<li>File new FIR/GD</li>
+			{% endif %}
+		</a>
+		<a href="{% url 'settings' %}">
+			{% if active = "setting" %}
+			<li class="active">Settings</li>
+			{% else %}
+			<li>Settings</li>
+			{% endif %}
+		</a>
+	</ul>
+</div>
+
+{% block content %} {% endblock %}
+
+</body>
+</html>
