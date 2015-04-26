@@ -12,7 +12,7 @@
 <div class="navigator">
 	<ul>
 		<li style="float:left;">Online FIR and GD Portal</li>
-		<li id="size">Logout</li>
+		<li id="size"><a href="/user/logout">Logout<a></li>
 		<li id="size">|</li>
 		<li id="size">Hi username</li>
 	</ul>
@@ -20,18 +20,18 @@
 
 <div class="sidebar">
 	<ul>
-		<a href="{% url 'dashboard' %}">
-			{% if active == "dashboard" %}
-			 <li class= "active">Recent FIRs</li>
-			{% else %}
-			 <li>Recent FIRs</li>
-			{% endif %}
-		</a>
 		<a href="{% url 'lodge_new' %}">
 			{% if active = "new" %}
 			<li class="active">File new FIR/GD</li>
 			{% else %}
 			<li>File new FIR/GD</li>
+			{% endif %}
+		</a>
+		<a href="{% url 'dashboard' %}">
+			{% if active == "dashboard" %}
+			 <li class= "active">Recent FIRs</li>
+			{% else %}
+			 <li>Recent FIRs</li>
 			{% endif %}
 		</a>
 		<a href="{% url 'settings' %}">

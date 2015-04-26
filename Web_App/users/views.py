@@ -33,7 +33,7 @@ def login_user(request):
     if user is not None:
         if user.is_active:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('lodge_new')
     else:
 		return redirect('home')
 

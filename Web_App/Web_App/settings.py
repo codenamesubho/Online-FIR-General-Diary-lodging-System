@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'users',
     'police',
+    'Web_App',
 )
 
 MIDDLEWARE_CLASSES = (
