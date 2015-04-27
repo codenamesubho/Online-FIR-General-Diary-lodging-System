@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 	{% block title %}<title>Online FIR and General Diary | User Profile</title>{% endblock %}
 	
-
+{% load dict_helper %}
 {% block content %}
 <div class="content">
 	
@@ -12,10 +12,16 @@
 	<hr id="divider">
 	<div class="list">
 		<ul>
-			<li>1. Ghosh killed all the memes</li>
-			<li>2. Ghosh not giving me 3000 rupees</li>
-			<li>3. Ghosh is planting bombs in Counter Strike</li>
-			<li>4. Ghosh killed himself</li>
+			{% for i in report %}
+                <li>
+                    <div>
+                        <p>{{ forloop.counter }}. Subject : {{report|dict_get:i|get_val:'Subject'}} ,Date: {{report|dict_get:i|get_val:'pub_date'}}</p>
+                        <p>Suspect: {{report|dict_get:i|get_val:'Suspect'}} ,Witness: {{report|dict_get:i|get_val:'Witness'}}</p>   
+                        <p>{{report|dict_get:i|get_val:'detail'}}</p>
+                    </div>
+                </li>
+                <br>
+            {% endfor %}
 		</ul>
 	</div>
 	

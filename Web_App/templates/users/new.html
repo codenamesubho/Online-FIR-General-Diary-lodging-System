@@ -10,14 +10,15 @@
 		<hr id="divider">
 	
 		<div class="form-controls">
-			<form>
-			<input type="text" placeholder="Subject"/>
-			<input type="text" placeholder="Who committed the crime"/>
-			<input type="text" placeholder="When (Time)"/>
-			<input type="text" placeholder="Where (Place)"/>
-			<input type="text" placeholder="Witnesses"/>
-			<input type="text" placeholder="What was taken away"/>
-			<textarea placeholder="Details"></textarea>
+			<form action = {% url "register" %} method="Post">
+				{% csrf_token %}
+			<input type="text" name="subject" placeholder="Subject"/>
+			<input type="text" name="suspect" placeholder="Who committed the crime"/>
+			<input type="text" name="occurence" placeholder="When (Time)"/>
+			<input type="text" name="location" placeholder="Where (Place)"/>
+			<input type="text" name="witness" placeholder="Witnesses"/>
+			<input type="text" name="loss" placeholder="What was taken away(if any)"/>
+			<textarea name="details" placeholder="Details"></textarea>
 			<input type="submit" value="submit" id="cent"/>
 			</form>	
 		</div>	

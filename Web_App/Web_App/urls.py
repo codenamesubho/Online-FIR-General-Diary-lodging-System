@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'users.views.index', name='home'),
     url(r'^user/' , include('users.urls')),
     url(r'^police/' , include('police.urls')),
-    
+    url(r'^register/', 'Web_App.views.register_fir', name='register'),
     url(r'^admin/', include(admin.site.urls)),
 
 

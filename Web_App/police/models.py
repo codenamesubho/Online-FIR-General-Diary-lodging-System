@@ -12,3 +12,5 @@ class Stationdata(models.Model):
     phone = models.CharField(max_length=10, unique=True)
     address = models.TextField()
  
+    def __str__(self):              # __unicode__ on Python 2
+        return self.StationCode

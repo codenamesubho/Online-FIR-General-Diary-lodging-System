@@ -10,3 +10,5 @@ class Userdata(models.Model):
     address = models.TextField()
     dob = models.DateTimeField('Date of Birth')
  
+    def __str__(self):              # __unicode__ on Python 2
+        return self.email

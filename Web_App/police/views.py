@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from Web_App.models import Fir
+from Web_App.models import Fir,General_Diary
+from django.contrib.auth.models import User
 from functools import wraps
 from django.http import HttpResponse
 # Create your views here.
@@ -34,19 +35,26 @@ def index(request):
 @login_required(login_url='/police/login')
 @verify_police
 def dashboard(request):
-    lastfir = Fir.objects.order_by('-pub_date')[:5]
-    return render(request,'police/dashboard.html',{'Fir' : lastfir})
+    try:
+        stationcode = User.objects.get(pk=request.session['_auth_user_id']).stationdata.StationCode
+        lastfir = Fir.objects.filter(StationCode__StationCode=stationcode).order_by('-pub_date')[:5]
+        return render(request,'police/dashboard.html',{'Fir' : lastfir})
+    except Exception as e:
+        print e
+        return HttpResponse(e)
 
 def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
-        if user.is_active:
+        if (user.is_active and hasattr(user,'stationdata')) or user.is_superuser:
             login(request, user)
             request.session['is_police'] = True
             print request.session.keys()
             return redirect('police_dashboard')
+        else:
+            return HttpResponse("Not Authorized")
     else:
 		return redirect('police_login')
 

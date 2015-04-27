@@ -7,6 +7,6 @@ urlpatterns = patterns('',
     url(r'^dashboard/$', 'users.views.dashboard', name='dashboard'),
     url(r'^settings/$', 'users.views.dashboard', name='settings'),
     url(r'^logout', 'users.views.logout_user', name='logout'),
-    url(r'^register/', 'users.views.register_fir', name='register'),
+    
     
     )

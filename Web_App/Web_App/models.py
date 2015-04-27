@@ -11,6 +11,8 @@ class General_Diary(models.Model):
     Time = models.DateTimeField('Occurence')
     Place = models.CharField(max_length=200)
 
+    def __str__(self):              # __unicode__ on Python 2
+        return self.Subject
 
 class Fir(models.Model):
     lodger = models.ForeignKey(User)
@@ -23,3 +25,6 @@ class Fir(models.Model):
     Place = models.CharField(max_length=200)
     Witness = models.CharField(max_length=500)
     Loss = models.CharField(max_length=200)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.Subject

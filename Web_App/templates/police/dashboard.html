@@ -52,10 +52,12 @@
                     {% for i in Fir %}
                     <li>
                         <div>
-                            <p>{{i.title}} ,{{i.pub_date}}</p>
+                            <p>Subject : {{i.Subject}} ,Date: {{i.pub_date}}</p>
+                            <p>Suspect: {{i.Suspect}} ,Witness: {{i.Witness}}</p>   
                             <p>{{i.detail}}</p>
                         </div>
                     </li>
+                    <br>
                     {% endfor %}
                 </ul>
         
