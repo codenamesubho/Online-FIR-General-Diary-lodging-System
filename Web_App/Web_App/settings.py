@@ -51,6 +51,25 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = 587 
+
+EMAIL_USE_TLS = True 
+
+EMAIL_HOST_PASSWORD = 'xxxxxxx'
+
+EMAIL_HOST_USER = 'xxx@xxx.xxx'
+
 ROOT_URLCONF = 'Web_App.urls'
 
 WSGI_APPLICATION = 'Web_App.wsgi.application'
@@ -110,3 +129,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 STATIC_URL = '/static/'
+
+PUSH_HUB = 'https://pubsubhubbub.appspot.com'

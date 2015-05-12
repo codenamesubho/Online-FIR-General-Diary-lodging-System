@@ -1,3 +1,5 @@
+@import url('bootstrap.css');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -91,12 +93,13 @@ body{
 	background-color: #fff;
 }
 
-.content{
+/*.content{
 	background-color:#fff;
 	height: auto;
 	width: 1000px;
 	float:right;
 }
+*/
 .heading{
 	width: auto;
 	height: 20px;
@@ -131,7 +134,7 @@ a{
 	float:right;
 	margin-right:20px;
 }
-
+/*
 .form-controls{
 	height:auto;
 	width: auto;
@@ -160,3 +163,4 @@ textarea{
 	width: 925px;
 	height: 350px;
 }
+*/

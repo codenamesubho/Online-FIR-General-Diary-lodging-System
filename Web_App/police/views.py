@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from Web_App.models import Fir,General_Diary
+from Web_App.models import Fir,general_diary
 from django.contrib.auth.models import User
 from functools import wraps
 from django.http import HttpResponse
+from django.utils.html import strip_tags
+
 # Create your views here.
 
 """

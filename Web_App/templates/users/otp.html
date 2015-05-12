@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}<title>Online FIR and General Diary | User Portal</title>{% endblock %}
+{% block css %}
+{% endblock %}
+{% block js %}
+<script>
+var i;
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    i = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(minutes + ":" + seconds);
+
+        if (--timer < 0) {
+            display.text("your OTP has expired, click below to resend OTP");
+        }
+    }, 1000);
+}
+
+jQuery(function ($) {
+    var fiveMinutes = 60 * 5,
+        display = $('#time');
+
+    startTimer(fiveMinutes, display);
+});
+
+$(document).ready(function(){
+	$('#resend').click(function(e){
+	e.preventDefault();
+	csrf = $('input[name="csrfmiddlewaretoken"]').val()
+	$.post("{% url 'resend' %}",
+		{'hash':'{{ request.session.hash }}',
+		'csrfmiddlewaretoken' : csrf ,
+	},
+		function(data,status,xhr){
+			clearInterval(i);
+			var fiveMinutes = 60 * 5;
+			display = $('#time');
+			console.log(data);
+			console.log(status);
+			startTimer(fiveMinutes, display);
+		});
+});
+});
+
+</script>
+ {% endblock %}
+{% block content %}
+<div class="container">
+	<div class="form-controls">
+		<form action = "{% url 'verifyOtp' %}" method="Post">
+			{% csrf_token %}
+			<div class="form-group  col-lg-6" style="margin:5em" >
+			
+			<input type="text" class="form-control" name="otp_code"/>
+			<p id="time"></p>
+			<input type="hidden" class="form-control" name="hash" value = "{{ request.session.hash }}"/>
+			<button class="btn btn-primary">Verify</button>
+			<a href="{% url 'resend' %}" id="resend">resend OTP</a>
+			
+			</div
+
+		</form>
+	</div>
+</div>
+{% endblock %}

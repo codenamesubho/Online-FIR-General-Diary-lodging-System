@@ -54,7 +54,7 @@
                         <div>
                             <p>Subject : {{i.Subject}} ,Date: {{i.pub_date}}</p>
                             <p>Suspect: {{i.Suspect}} ,Witness: {{i.Witness}}</p>   
-                            <p>{{i.detail}}</p>
+                            <p>{{i.detail|striptags}}</p>
                         </div>
                     </li>
                     <br>

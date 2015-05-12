@@ -1,7 +1,66 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}<title>Online FIR and General Diary | User Profile</title>{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.datetimepicker.css' %}"/ >
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/jquery.datetimepicker.js' %}"></script>
+<script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+<script >
+$(document).ready(function(){
+	$(".hideable").toggle();
+	$('#datetimepicker').datetimepicker();
+	$('#dobpicker').datetimepicker({timepicker:false, format:'d/m/Y'});  
+	CKEDITOR.replace('details');
+	$(".optionsRadios1").click(function(){
+        $(".hideable").toggle();
+    });
+});
+
+$('select').on('change', function() {
+	if (this.id == state){
+		search = this.val();
+		url = "{% url 'getoption' %}?state"+search;
+		
+	}
+	if (this.id == district){
+		state = $('#state').val();
+		search = this.val();
+		
+		url = "{% url 'getoption' %}?state"+search+"&district="+search;
+		
+	}
+	if (this.id == city){
+		state = $('#state').val();
+		dist = $('#district').val();
+		search = this.val();
+		
+		url = "{% url 'getoption' %}?state"+search+"&district="+dist+"&city="+search;
+		
+	}
+	if (this.id == city){
+		state = $('#state').val();
+		dist = $('#district').val();
+		search = this.val();
+		
+		url = "{% url 'getoption' %}?state"+search+"&district="+dist+"&city="+search;
+		
+	}
+	$.getJSON(url, function(result) {
+
+	    $.each(result, function(item) {
+	        options.append($("<option />").val(item.Code).text(item.Name));
+	    });
+	});	
+	
+});
+</script>
+ {% endblock %}
+
 {% block content %}
-	<div class="content">
+ {% include 'sidebar.html' %}
+	<div class="container col-lg-9">
 	
 		<div class="heading">
 			<h1>File new FIR / General Diary</h1>
@@ -11,18 +70,137 @@
 	
 		<div class="form-controls">
 			<form action = {% url "register" %} method="Post">
+			
 				{% csrf_token %}
-			<input type="text" name="subject" placeholder="Subject"/>
-			<input type="text" name="suspect" placeholder="Who committed the crime"/>
-			<input type="text" name="occurence" placeholder="When (Time)"/>
-			<input type="text" name="location" placeholder="Where (Place)"/>
-			<input type="text" name="witness" placeholder="Witnesses"/>
-			<input type="text" name="loss" placeholder="What was taken away(if any)"/>
-			<textarea name="details" placeholder="Details"></textarea>
-			<input type="submit" value="submit" id="cent"/>
-			</form>	
-		</div>	
+			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  				<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingOne">
+      					<h4 class="panel-title">
+        					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 
-	</div>
+
+								Personal Details
+							</a>
+     					 </h4>
+    				</div>
+    				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      					<div class="panel-body">
+							
+							
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="fname" placeholder="First Name"/></div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="lname" placeholder="Last Name"/></div>
+							
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="mob" placeholder="Mobile"/></div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="email" placeholder="email"/></div>
+							<div class="form-group col-lg-10"><textarea class="form-control" name="address" placeholder="address"></textarea></div>
+							
+							<div class="form-group col-lg-5">
+								<select  name="type1" class="form-control"/> 
+								<option value="None">Choose ID 1</option>
+								<option value="VID">VOTER IDENTITY CARD</option>
+								<option value="PAN">PAN CARD</option>
+								</select>
+							</div>
+							<div class="form-group col-lg-5">
+								<input type="text" class="form-control" name="id1" placeholder=""/>
+							</div>
+						
+							<br>
+							<div class="form-group col-lg-5">
+								<select  name="type2" class="form-control"/>
+							<option value="None">Choose ID 2</option>
+							<option value="RATION">RATION CARD</option>
+							<option value="AADHAR">AADHAAR CARD</option>
+							 </select>
+							</div>
+							<div class="form-group col-lg-5">
+							<input type="text" name="id2" class="form-control" placeholder=""/>
+							</div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="dob" 
+							id="dobpicker" placeholder="Date of Birth"/></div>
+						</div>
+    				</div>
+  				</div>
+			
+			<br>
+			<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingOne">
+      					<h4 class="panel-title">
+        					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        						Police Station
+							</a>
+     					 </h4>
+    				</div>
+    				<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      					<div class="panel-body">
+      						<hr>
+							<div class="form-group col-lg-5">
+								<select  name="state" id="state" class="form-control"/> 
+								<option value="None">State</option>
+								<option value="WB">WEST BENGAL</option>
+								</select>
+							</div>
+							<div class="form-group col-lg-5">
+							
+								<select id="district" name="district" class="form-control"/>
+								<option value="None">District</option>
+								<option value="BWD">BURDWAN</option>
+								 </select>
+							
+							</div>
+
+							<div class="form-group col-lg-5">
+								<select id="city" name="city" class="form-control"/>
+								<option value="None">City</option>
+								<option value="DGR">DURGAPUR</option>
+								</select>
+							</div>
+							<div class="form-group col-lg-5">
+								<select id="station" name="station" class="form-control">
+								<option value="None">Police Station</option>
+								<option value="R">le Random Thana</option>
+								</select>
+							</div>	
+							<hr>	
+						</div>
+    				</div>
+  				</div>
+			
+			<br>
+			<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingThree">
+      					<h4 class="panel-title">
+        					<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        						Report
+							</a>
+     					 </h4>
+    				</div>
+    				<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      					<div class="panel-body">
+			
+							<div class="radio col-lg-12">
+  							<label class="radio-inline"><input type="radio" name="optionsRadios" class="optionsRadios1" value="GD" checked>
+    						General Diary(GD)</label>
+							
+							
+  							<label class="radio-inline"><input type="radio" name="optionsRadios" class="optionsRadios1" value="FIR">
+    						First Investigation Report(FIR)</label>
+							</div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="subject" placeholder="Subject"/></div>
+							<div class="form-group col-lg-5 hideable"><input type="text" class="form-control" name="suspect" placeholder="Who committed the crime"/></div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="occurence" placeholder="When (Time)" id="datetimepicker" /></div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="location" placeholder="Where (Place)"/></div>
+							<div class="form-group col-lg-5 hideable"><input type="text" class="form-control" name="witness" placeholder="Witnesses"/></div>
+							<div class="form-group col-lg-5"><input type="text" class="form-control" name="loss" placeholder="What was taken away(if any)"/></div>
+							<div class="form-group col-lg-12"><textarea class="form-control" name="details" placeholder="Details" rows="20"></textarea></div>
+							<input type="submit" class="form-control btn btn-success" value="submit" id="cent"/>
+						</div>
+    				</div>
+  			</div>
+  		<div>
+	</form>	
+</div>	
+
+</div>
 
 {% endblock %}

@@ -13,7 +13,7 @@
             <li>Home</li>
             <li>About</li>
             <li>Contact</li>
-            <div class="register-btn">Register</div>
+            <div class="register-btn"><a href="{% url 'lodge_new' %}">Lodge</a></div>
         </ul>
     </div>
 
@@ -25,36 +25,7 @@
 
         </div>
 
-        <div class="login-box col-lg-3">
-
-            <div>
-                <h3>Login</h3>
-                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-                    <form action="{% url 'authenticate' %}" method="post">
-                    {% csrf_token %}
-                
-                    <div class="form-group">
-                    <label>Username</label>
-                        <div class="col-lg-9">
-                            <input type="text" class="form-control" name="username" placeholder="User Name" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                     <label>Password</label>
-                         <div class="col-lg-9">
-                           <input type="password" class="col-lg-2 form-control" name="password" placeholder="Password" />
-                        </div>
-                    </div>
-                    <div class="col-lg-11">
-                        <input class="btn btn-default" type="submit" value="Login" />
-                    </div>
-                </form>
-
-
-        </div>
-
-    </div>
+        
 
   </body>
 

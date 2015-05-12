@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <title>Online FIR and General Diary</title>
+  <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 2cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+
+            }
+
+            html{
+            	font-family: serif;
+                font-size: 1em;
+                
+            }
+            p,td{
+            	font-size: 1.5em;
+            }
+            table{
+            	border:1px solid black;
+            	padding:4px 0px 0px 4px;
+            }
+
+        </style>
+
+</head>
+<body>
+<div class="container">
+	<p>To the Officer Incharge<br>
+	{{ report.StationCode.StationName }} <br>
+	{% for i in  address_list %}
+	{{ i }}<br>
+	{% endfor %}</p>
+	
+		<table>
+	<tr>
+	<td><b>Subject:</b></td><td> {{ report.Subject }}</td>
+	</tr>
+	<tr>
+	<td><b>Time of incident:</b></td><td> {{ report.Time }}</td>
+	</td>
+	<tr>
+		<td><b>Reference No:</b></td><td> {{ report.ref_id}}</td>
+	</tr>
+	<tr>
+		<td><b>Place of incident:</b></td><td> {{ report.Place}}</td>
+	</tr>
+</table>
+	<div>
+	<p><b>Detail:</b>
+		<p>{{ report.detail |safe}}<p>
+	</div>
+
+	<p>Dated: {{ report.pub_date }}</p>
+	
+</div>
+</body>
+</html>

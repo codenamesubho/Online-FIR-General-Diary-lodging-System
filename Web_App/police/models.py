@@ -9,7 +9,7 @@ class Stationdata(models.Model):
     State = models.CharField(max_length=50)
     District = models.CharField(max_length=50)
     City = models.CharField(max_length=50)
-    phone = models.CharField(max_length=10, unique=True)
+    phone = models.CharField(max_length=10)
     address = models.TextField()
  
     def __str__(self):              # __unicode__ on Python 2
