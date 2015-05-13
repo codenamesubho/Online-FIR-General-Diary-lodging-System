@@ -8,7 +8,9 @@ Development
 -----------------------------
 
 `virtualenv fir`
+
 `source fir/bin/activate`
+
 `pip install -r requirements.txt`
 
 ::Setting up database::
@@ -36,6 +38,7 @@ For setting your Own email service you will need to set ,
 -------
 
 `redis-server` //run redis server
+
 `./manage.py runserver` //run application
 
 To Do
