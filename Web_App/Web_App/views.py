@@ -10,7 +10,7 @@ import unirest
 from urllib import quote_plus
 import uuid
 from django.core.cache import cache
-from Web_App.secret import uid,pwd,key
+from Web_App.secret import uid,pwd,Mashape_Key
 import random
 import string
 from ipdb import set_trace
@@ -70,7 +70,7 @@ def send_sms(number,template_type,report_type=None,**kargs):
                 'uid' : uid,
             },
     headers={
-    "X-Mashape-Key": key,
+    "X-Mashape-Key": Mashape_Key,
     "Accept": "application/json"
     },
     callback= callback_function
