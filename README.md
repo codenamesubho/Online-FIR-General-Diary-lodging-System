@@ -5,22 +5,26 @@ Development
 ===========
 
 ::Setup virtual environment::
+-----------------------------
 
 `virtualenv fir`
 `source fir/bin/activate`
 `pip install -r requirements.txt`
 
 ::Setting up database::
+-----------------------
 
 `./manage.py syncdb`
 
 ::Setting up SMS::
+------------------
 
 Since this is a demo project. I am using Free Site2SMS Api.
 You need to register at mashape.com and Site2Sms Api.
 Fill in your `uid`,`pwd` & `Mashape_Key` in `Web_App\Web_App\secret.py`
 
 ::Setting up Email::
+--------------------
 
 Since its a demo project, it currently uses my Gmail Account to send Emails.
 For setting your Own email service you will need to set ,
@@ -29,6 +33,7 @@ For setting your Own email service you will need to set ,
 `Web_App\Web_App\settings.py` file.
 
 ::RUN::
+-------
 
 `redis-server` //run redis server
 `./manage.py runserver` //run application
