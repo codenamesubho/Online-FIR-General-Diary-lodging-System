@@ -1,0 +1,8 @@
+Django==1.8.1
+Pillow==2.8.1
+Unirest==1.1.7
+django-redis==4.0.0
+ipdb==0.8
+pisa==3.0.33
+reportlab==3.1.44
+xhtml2pdf==0.0.6
