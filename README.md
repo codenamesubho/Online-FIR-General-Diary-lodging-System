@@ -28,6 +28,10 @@ For setting your Own email service you will need to set ,
 `EMAIL_HOST`,`EMAIL_PORT`,`EMAIL_USE_TLS`,`EMAIL_HOST_PASSWORD`,`EMAIL_HOST_USER` fields in
 `Web_App\Web_App\settings.py` file.
 
+::RUN::
+
+`redis-server` //run redis server
+`./manage.py runserver` //run application
 
 To Do
 =====
@@ -37,3 +41,4 @@ To Do
 3. Write Tests
 4. Write a mobile Application.
 
+For Further Query shoot me a mail at subho DOT prp AT gmail DOT com
